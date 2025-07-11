@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PitchBridge - Settings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <h1 class="logo">PitchBridge</h1>
+      <nav>
+        <a href="HomePage.html">Home</a>
+        <a href="LoginPage.html">Login</a>
+        <a href="SignUpPage.html">Sign Up</a>
+        <a href="Profile.html">Profile</a>
+        <a href="Messages.html">Messages</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 style="text-align: center; margin-top: 2rem;">Settings</h2>
+    <div style="max-width: 600px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <form>
+        <label for="email" style="font-weight: 600;">Email</label><br />
+        <input type="email" id="email" name="email" placeholder="your@email.com" required /><br />
+
+        <label for="password" style="font-weight: 600;">Password</label><br />
+        <input type="password" id="password" name="password" placeholder="Enter new password" /><br />
+
+        <label for="notifications" style="font-weight: 600;">Notifications</label><br />
+        <select id="notifications" name="notifications">
+          <option value="enabled">Enabled</option>
+          <option value="disabled">Disabled</option>
+        </select><br />
+
+        <button type="submit">Save Settings</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 PitchBridge. All rights reserved.</p>
+  </footer>
+</body>
+</html>
