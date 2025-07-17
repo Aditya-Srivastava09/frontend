@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PitchBridge - Login</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,25 +13,65 @@
       <h1 class="logo">PitchBridge</h1>
       <nav>
         <a href="HomePage.html">Home</a>
-        <a href="LoginPage.html">Login</a>
-        <a href="SignUpPage.html">Sign Up</a>
-        <a href="Profile.html">Profile</a>
-        <a href="Messages.html">Messages</a>
+        <a href="SignUpPage.html">Sign Up</a>   
+        <a href="FAQandHelpPage.html">Help</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h2 style="text-align: center; margin-top: 2rem;">Login to Your Account</h2>
-    <form style="margin: 0 auto; max-width: 400px;">
-      <input type="email" placeholder="Email" required /><br />
-      <input type="password" placeholder="Password" required /><br />
-      <button type="submit">Login</button>
-    </form>
+  <main>
+    <div class="form-card">
+      <h2 style="text-align:center; color:#007bff;">Welcome Back!</h2>
+      <p style="text-align:center;">Login to continue to your dashboard</p>
+      <form class="signup-form">
+        <div class="input-group">
+          <img src="asset/email.gif" alt="Email Icon" />
+          <input type="email" placeholder="Email" required />
+        </div>
+        <div class="input-group password-input">
+          <img src="asset/lock.gif" alt="Password Icon" />
+          <input type="password" placeholder="Password" id="loginPassword" required />
+          <img src="assets/eye.svg" alt="Toggle" id="toggleLoginPassword" class="toggle-password" />
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+
+        <div class="form-links" style="text-align: center; margin-top: 1rem;">
+        <a href="ForgotPassword.html" class="form-link-blue">Forgot Password?</a>
+        </div>
+
+      <div class="form-links" style="text-align:center; margin-top: 1rem;">
+      Don’t have an account? <a href="SignUpPage.html" class="form-link-blue">Sign up here</a>
+      </div>
+
   </main>
 
   <footer class="footer">
     <p>&copy; 2025 PitchBridge. All rights reserved.</p>
   </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("toggleLoginPassword");
+    const pwd = document.getElementById("loginPassword");
+
+    toggle.addEventListener("click", () => {
+      const type = pwd.getAttribute("type") === "password" ? "text" : "password";
+      pwd.setAttribute("type", type);
+      toggle.src = type === "password" ? "assets/eye.svg" : "assets/eye-off.svg";
+    });
+
+    // Handle form submission
+    const form = document.querySelector(".signup-form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent actual form submission
+      window.location.href = "dashboard.html"; // Redirect to dashboard
+    });
+  });
+</script>
+
 </body>
 </html>
+
+

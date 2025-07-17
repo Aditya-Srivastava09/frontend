@@ -1,0 +1,130 @@
+<!-- FAQ / Help - PitchBridge -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ & Help - PitchBridge</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      color: #5D5FEF;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      padding-right: 20px;
+      color: #333;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-weight: 700;
+      color: #5D5FEF;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: #555;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .faq-answer.open {
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <h1>FAQ & Help</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I create an account?</div>
+      <div class="faq-answer">
+        To create an account, click on the Sign Up button on the homepage and fill in the required details.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">I forgot my password. What should I do?</div>
+      <div class="faq-answer">
+        Use the "Forgot Password" link on the login page to reset your password via your registered email.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How can I update my profile information?</div>
+      <div class="faq-answer">
+        Navigate to the Profile page from your dashboard to update your personal details and preferences.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I delete my account?</div>
+      <div class="faq-answer">
+        Go to Settings &gt; Delete Account and follow the instructions. Note that deletion is permanent.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Who can I contact for support?</div>
+      <div class="faq-answer">
+        You can reach out to our support team via the Contact page or email us at support@pitchbridge.com.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll('.faq-question');
+
+    questions.forEach(question => {
+      question.addEventListener('click', () => {
+        question.classList.toggle('active');
+        const answer = question.nextElementSibling;
+        if(answer.classList.contains('open')){
+          answer.classList.remove('open');
+        } else {
+          answer.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

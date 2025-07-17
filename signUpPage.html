@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PitchBridge - Sign Up</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,27 +12,170 @@
     <div class="nav-container">
       <h1 class="logo">PitchBridge</h1>
       <nav>
-        <a href="HomePage.html">Home</a>
-        <a href="LoginPage.html">Login</a>
-        <a href="SignUpPage.html">Sign Up</a>
-        <a href="Profile.html">Profile</a>
-        <a href="Messages.html">Messages</a>
+        <a href="homepage.html">Home</a>
+        <a href="loginpage.html">Login</a>
+        <a href="FAQandHelpPage.html">Help</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h2 style="text-align: center; margin-top: 2rem;">Create Your Account</h2>
-    <form style="margin: 0 auto; max-width: 400px;">
-      <input type="text" placeholder="Username" required /><br />
-      <input type="email" placeholder="Email" required /><br />
-      <input type="password" placeholder="Password" required /><br />
-      <button type="submit">Sign Up</button>
-    </form>
+  <main>
+    <div class="form-card">
+      <h2 style="text-align:center; color:#007bff;">Sign Up</h2>
+
+      <div class="role-selection">
+        <button id="startupBtn" class="active">Startup</button>
+        <button id="investorBtn">Investor</button>
+      </div>
+
+      <form id="signupForm" class="signup-form" method="POST" action="#">
+        <input type="hidden" name="role" id="roleField" value="startup" />
+
+        <!-- Common Fields -->
+        <div class="input-group">
+          <img src="asset/user.gif" alt="User Icon">
+          <input type="text" name="fullName" placeholder="Full Name" required />
+        </div>
+
+        <div class="input-group">
+          <img src="asset/email.gif" alt="Email Icon">
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+
+        <!-- Password Field -->
+      <div class="input-group password-group">
+        <img src="asset/lock.gif" alt="Password Icon">
+        <input type="password" placeholder="Password" id="password" required />
+        <span class="toggle-password" onclick="togglePassword('password', 'eyeIcon1')">
+          <img id="eyeIcon1" src="asset/eye.svg" alt="Toggle Eye" />
+        </span>
+      </div>
+
+        <!-- Confirm Password Field -->
+      <div class="input-group password-group">
+        <img src="asset/lock.gif" alt="Confirm Password Icon">
+        <input type="password" placeholder="Confirm Password" id="confirmPassword" required />
+        <span class="toggle-password" onclick="togglePassword('confirmPassword', 'eyeIcon2')">
+          <img id="eyeIcon2" src="asset/eye.svg" alt="Toggle Eye" />
+        </span>
+      </div>
+
+
+        <!-- Startup-specific Fields -->
+        <div class="startup-fields visible">
+          <div class="input-group">
+            <img src="asset/idea.gif" alt="Idea Icon">
+            <textarea name="startupIdea" placeholder="Your Startup Idea" required></textarea>
+          </div>
+
+          <div class="input-group">
+            <img src="asset/team.gif" alt="Team Size Icon">
+            <input type="number" name="teamSize" placeholder="Team Size" required />
+          </div>
+
+          <div class="input-group">
+            <img src="asset/stair.gif" alt="Stage Icon">
+            <input type="text" name="startupStage" placeholder="Startup Stage (e.g., MVP, Scaling)" required />
+          </div>
+        </div>
+
+        <!-- Investor-specific Fields -->
+        <div class="investor-fields">
+          <div class="input-group">
+            <img src="asset/coin.gif" alt="Budget Icon">
+            <input type="text" name="budget" placeholder="Investment Budget (e.g., $10k - $100k)" />
+          </div>
+
+          <div class="input-group">
+            <img src="asset/goal.gif" alt="Interests Icon">
+            <input type="text" name="interests" placeholder="Interest Areas (e.g., Tech, Health)" />
+          </div>
+
+          <div class="input-group">
+            <img src="asset/company.gif" alt="Company Icon">
+            <input type="text" name="company" placeholder="Company Name" />
+          </div>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="terms" required />
+            I agree to the <a href="TermsAndConditions.html" target="_blank">Terms & Conditions</a>
+          </label>
+        </div>
+
+        <div class="error-msg" id="errorMessage"></div>
+
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+    </div>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 PitchBridge. All rights reserved.</p>
+    &copy; 2025 PitchBridge. All rights reserved.
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const startupBtn = document.getElementById("startupBtn");
+      const investorBtn = document.getElementById("investorBtn");
+      const startupFields = document.querySelector(".startup-fields");
+      const investorFields = document.querySelector(".investor-fields");
+      const roleField = document.getElementById("roleField");
+
+      startupBtn.addEventListener("click", () => {
+        startupFields.classList.add("visible");
+        investorFields.classList.remove("visible");
+        startupBtn.classList.add("active");
+        investorBtn.classList.remove("active");
+        roleField.value = "startup";
+      });
+
+      investorBtn.addEventListener("click", () => {
+        investorFields.classList.add("visible");
+        startupFields.classList.remove("visible");
+        investorBtn.classList.add("active");
+        startupBtn.classList.remove("active");
+        roleField.value = "investor";
+      });
+
+      document.getElementById("signupForm").addEventListener("submit", (e) => {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const errorMsg = document.getElementById("errorMessage");
+
+        if (password !== confirmPassword) {
+          e.preventDefault();
+          errorMsg.textContent = "Passwords do not match.";
+        } else {
+          errorMsg.textContent = "";
+          e.preventDefault(); // prevent actual form submit
+          window.location.href = "dashboard.html"; // redirect
+        }
+      });
+    });
+  </script>
+  <script>
+  function togglePassword(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.src = "asset/eye-off.svg";
+    } else {
+      input.type = "password";
+      icon.src = "asset/eye.svg";
+    }
+  }
+</script>
+
+
+
+
 </body>
 </html>
+
+
+

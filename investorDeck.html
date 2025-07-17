@@ -2,44 +2,202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PitchBridge - Investor Deck</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .upload-box {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .upload-box input[type="file"] {
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .upload-box button {
+      padding: 0.7rem 2rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0.5rem;
+    }
+
+    .upload-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .file-details {
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #f3f3f3;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .progress-bar-fill {
+      height: 10px;
+      background-color: #28a745;
+      width: 0%;
+      transition: width 1s ease-in-out;
+    }
+
+    .file-icon {
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      .upload-box {
+        margin: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="nav-container">
-      <h1 class="logo">PitchBridge</h1>
-      <nav>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">PitchBridge</div>
+      <nav class="sidebar-nav">
         <a href="HomePage.html">Home</a>
-        <a href="LoginPage.html">Login</a>
-        <a href="SignUpPage.html">Sign Up</a>
+        <a href="PitchDeck.html">Pitch Deck</a>
+        <a href="InvestorDeck.html" class="active">Investor Deck</a>
         <a href="Profile.html">Profile</a>
         <a href="Messages.html">Messages</a>
+        <a href="Settings.html">Settings</a>
+        <a href="LoginPage.html">Login</a>
+        <a href="SignUpPage.html">Sign Up</a>
+        <a href="Logout.html">Log Out</a>
       </nav>
-    </div>
-  </header>
+    </aside>
 
-  <main class="container">
-    <h2 style="text-align: center; margin-top: 2rem;">Investor Deck</h2>
-    <div style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <p style="text-align: center; font-size: 1.1rem; color: #555;">
-        Provide your business overview, traction metrics, and financials to attract investors.
-      </p>
-      <div style="text-align: center; margin-top: 2rem;">
-        <input type="file" style="margin-bottom: 1rem;" />
-        <br />
-        <button type="button" style="padding: 0.75rem 2rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
-          Upload Deck
-        </button>
+    <!-- Main Content -->
+    <main class="main-content">
+      <h2 style="text-align: center; margin-top: 2rem;">Investor Deck</h2>
+
+      <div class="upload-box">
+        <p style="font-size: 1.1rem; color: #555;">
+          Upload your investor deck to showcase traction, business plans, and financials.
+        </p>
+
+        <input type="file" id="investorFile" accept=".pdf,.ppt,.pptx"/>
+        <div id="fileInfo" class="file-details">No file selected</div>
+        <div id="fileIcon" class="file-icon"></div>
+
+        <button onclick="handleUpload()">Upload Deck</button>
+        <button onclick="clearFile()" style="background-color: #dc3545;">Clear</button>
+
+        <div class="progress-bar" id="progressContainer">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+
+        <div id="uploadMessage" style="margin-top: 1rem; font-weight: bold;"></div>
       </div>
-    </div>
-  </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 PitchBridge. All rights reserved.</p>
-  </footer>
+      <footer class="footer">
+        <p>&copy; 2025 PitchBridge. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById("investorFile");
+    const fileInfo = document.getElementById("fileInfo");
+    const uploadMessage = document.getElementById("uploadMessage");
+    const progressBar = document.getElementById("progressBar");
+    const progressContainer = document.getElementById("progressContainer");
+    const fileIcon = document.getElementById("fileIcon");
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (file) {
+        fileInfo.textContent = `File: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+        if (file.type === "application/pdf") {
+          fileIcon.innerHTML = "📄 PDF File";
+        } else if (
+          file.type === "application/vnd.ms-powerpoint" ||
+          file.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+        ) {
+          fileIcon.innerHTML = "📊 PPT File";
+        } else {
+          fileIcon.innerHTML = "";
+        }
+      } else {
+        fileInfo.textContent = "No file selected";
+        fileIcon.innerHTML = "";
+      }
+    });
+
+    function handleUpload() {
+      const file = fileInput.files[0];
+      uploadMessage.textContent = "";
+      progressContainer.style.display = "none";
+      progressBar.style.width = "0%";
+
+      if (!file) {
+        uploadMessage.textContent = "Please select a file before uploading.";
+        uploadMessage.style.color = "red";
+        return;
+      }
+
+      const allowedTypes = [
+        'application/pdf',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+      ];
+
+      if (!allowedTypes.includes(file.type)) {
+        uploadMessage.textContent = "Only PDF or PPT files are allowed.";
+        uploadMessage.style.color = "red";
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        uploadMessage.textContent = "File size must be under 10MB.";
+        uploadMessage.style.color = "red";
+        return;
+      }
+
+      progressContainer.style.display = "block";
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(interval);
+          uploadMessage.textContent = "Investor deck uploaded successfully!";
+          uploadMessage.style.color = "green";
+          localStorage.setItem("investorDeck", file.name);
+        }
+      }, 150);
+    }
+
+    function clearFile() {
+      fileInput.value = "";
+      fileInfo.textContent = "No file selected";
+      fileIcon.innerHTML = "";
+      uploadMessage.textContent = "";
+      progressBar.style.width = "0%";
+      progressContainer.style.display = "none";
+    }
+  </script>
 </body>
 </html>
-

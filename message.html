@@ -8,39 +8,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <div class="nav-container">
-      <h1 class="logo">PitchBridge</h1>
-      <nav>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">PitchBridge</div>
+      <nav class="sidebar-nav">
         <a href="HomePage.html">Home</a>
+        <a href="PitchDeck.html">Pitch Deck</a>
+        <a href="InvestorDeck.html">Investor Deck</a>
+        <a href="Profile.html">Profile</a>
+        <a href="Messages.html" class="active">Messages</a>
+        <a href="Settings.html">Settings</a>
         <a href="LoginPage.html">Login</a>
         <a href="SignUpPage.html">Sign Up</a>
-        <a href="Profile.html">Profile</a>
-        <a href="Messages.html">Messages</a>
+        <a href="Logout.html">Log Out</a>
       </nav>
-    </div>
-  </header>
+    </aside>
 
-  <main class="container">
-    <h2 style="text-align: center; margin-top: 2rem;">Messages</h2>
-    <div style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <div style="background: #f1f1f1; padding: 1rem; border-radius: 6px;">
-          <p style="margin: 0;"><strong>Investor A:</strong> We're interested in your product. Let's schedule a meeting.</p>
-        </div>
-        <div style="background: #e9f7ff; padding: 1rem; border-radius: 6px; align-self: flex-end;">
-          <p style="margin: 0;"><strong>You:</strong> Thank you! I’m available this Friday at 4 PM.</p>
-        </div>
-        <div style="background: #f1f1f1; padding: 1rem; border-radius: 6px;">
-          <p style="margin: 0;"><strong>Investor B:</strong> Can you share your latest pitch deck?</p>
+    <!-- Main Content -->
+    <main class="main-content">
+      <h2 style="text-align: center; margin-top: 2rem;">Messages</h2>
+      <div style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div style="background: #f1f1f1; padding: 1rem; border-radius: 6px;">
+            <p style="margin: 0;"><strong>Investor A:</strong> We're interested in your product. Let's schedule a meeting.</p>
+          </div>
+          <div style="background: #e9f7ff; padding: 1rem; border-radius: 6px; align-self: flex-end;">
+            <p style="margin: 0;"><strong>You:</strong> Thank you! I’m available this Friday at 4 PM.</p>
+          </div>
+          <div style="background: #f1f1f1; padding: 1rem; border-radius: 6px;">
+            <p style="margin: 0;"><strong>Investor B:</strong> Can you share your latest pitch deck?</p>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 PitchBridge. All rights reserved.</p>
-  </footer>
+      <footer class="footer">
+        <p>&copy; 2025 PitchBridge. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
-

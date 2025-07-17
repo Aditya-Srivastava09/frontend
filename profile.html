@@ -8,43 +8,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <div class="nav-container">
-      <h1 class="logo">PitchBridge</h1>
-      <nav>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">PitchBridge</div>
+      <nav class="sidebar-nav">
         <a href="HomePage.html">Home</a>
+        <a href="PitchDeck.html">Pitch Deck</a>
+        <a href="InvestorDeck.html">Investor Deck</a>
+        <a href="Profile.html" class="active">Profile</a>
+        <a href="Messages.html">Messages</a>
+        <a href="Settings.html">Settings</a>
         <a href="LoginPage.html">Login</a>
         <a href="SignUpPage.html">Sign Up</a>
-        <a href="Profile.html">Profile</a>
-        <a href="Messages.html">Messages</a>
+        <a href="Logout.html">Log Out</a>
       </nav>
-    </div>
-  </header>
+    </aside>
 
-  <main class="container">
-    <h2 style="text-align: center; margin-top: 2rem;">Your Profile</h2>
-    <div style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <div style="display: flex; align-items: center; gap: 2rem;">
-        <img src="https://via.placeholder.com/100" alt="Profile Picture" style="border-radius: 50px; width: 100px; height: 100px; object-fit: cover;" />
+    <!-- Main Content -->
+    <main class="main-content">
+      <h2 style="text-align: center; margin-top: 2rem;">Your Profile</h2>
+      <div style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; gap: 2rem;">
+          <img src="https://via.placeholder.com/100" alt="Profile Picture" style="border-radius: 50px; width: 100px; height: 100px; object-fit: cover;" />
+          <div>
+            <h3 style="margin: 0 0 0.5rem 0;">Aayush Kumar</h3>
+            <p style="margin: 0; color: #777;">Entrepreneur | Tech Innovator</p>
+          </div>
+        </div>
+
+        <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;" />
+
         <div>
-          <h3 style="margin: 0 0 0.5rem 0;">Aayush Kumar</h3>
-          <p style="margin: 0; color: #777;">Entrepreneur | Tech Innovator</p>
+          <p><strong>Email:</strong> aayush@example.com</p>
+          <p><strong>Startup:</strong> SmartAgroTech</p>
+          <p><strong>Location:</strong> Dehradun, India</p>
+          <p><strong>About:</strong> Passionate about bridging technology with sustainable agriculture to empower local farmers.</p>
         </div>
       </div>
-
-      <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;" />
-
-      <div>
-        <p><strong>Email:</strong> aayush@example.com</p>
-        <p><strong>Startup:</strong> SmartAgroTech</p>
-        <p><strong>Location:</strong> Dehradun, India</p>
-        <p><strong>About:</strong> Passionate about bridging technology with sustainable agriculture to empower local farmers.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 PitchBridge. All rights reserved.</p>
-  </footer>
+      <footer class="footer">
+        <p>&copy; 2025 PitchBridge. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
